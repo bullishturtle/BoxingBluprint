@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BoxingBluprint — By Landon - Amire</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--edge:#30363d;--ink:#c9d1d9;--red:#e63946;--gold:#f4a261;--accent:#ffd166;--grey:#8b949e;--white:#e6edf3}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.65}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+header{background:linear-gradient(180deg,#23060b,var(--bg));border-bottom:4px solid var(--red);padding:70px 0 46px;text-align:center}
+.brand{font-family:'Arial Black',Arial,sans-serif;font-size:clamp(2.1rem,7vw,4rem);letter-spacing:3px;color:var(--white)}
+.brand em{color:var(--red);font-style:normal}
+.byline{color:var(--accent);font-style:italic;margin-top:8px;letter-spacing:1px;font-size:1.05rem}
+.tag{color:var(--grey);margin:20px auto 0;max-width:600px;font-size:1.05rem}
+.tag b{color:var(--white)}
+#heroFig{display:block;margin:26px auto 8px}
+.btn{display:inline-block;background:var(--red);color:#fff;border:none;border-radius:10px;padding:14px 30px;font-family:'Arial Black',Arial,sans-serif;font-size:1rem;letter-spacing:1px;cursor:pointer;margin-top:26px;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(230,57,70,.35)}
+.btn.alt{background:transparent;border:2px solid var(--gold);color:var(--gold)}
+.btn.sm{padding:9px 16px;font-size:.8rem;margin-top:10px;margin-right:8px}
+.sec{padding:54px 0;border-bottom:1px solid var(--edge)}
+h2{font-family:'Arial Black',Arial,sans-serif;color:var(--white);letter-spacing:1px;font-size:1.5rem;margin-bottom:6px}
+h2 span{color:var(--red)}
+h3{color:var(--accent);font-family:Arial,sans-serif;font-size:1.05rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.sub{color:var(--grey);margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--edge);border-left:5px solid var(--red);border-radius:12px;padding:22px}
+.card.gold{border-left-color:var(--gold)}
+.quote{color:var(--accent);font-weight:bold;font-size:1.05rem}
+.chapter{background:var(--card);border:1px solid var(--edge);border-radius:14px;padding:26px;margin-bottom:26px}
+.chapter svg{display:block;margin:6px auto 14px;max-width:100%}
+.chapter .why{margin-top:12px;color:var(--grey)}
+.chapter .why b{color:var(--gold)}
+.cap{text-align:center;color:var(--red);font-family:'Arial Black',Arial,sans-serif;font-size:.75rem;letter-spacing:2px}
+#locked{display:none}
+#gate{background:var(--card);border:2px dashed var(--gold);border-radius:14px;padding:40px 26px;text-align:center;margin-top:8px}
+#gate p{max-width:520px;margin:0 auto}
+.lights{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:22px 0}
+.light{background:#12351a;border:1px solid #2ea043;color:#7ee787;font-family:'Arial Black',Arial,sans-serif;letter-spacing:1px;padding:12px 20px;border-radius:10px;font-size:.85rem;transition:all .4s ease}
+.light.off{background:#2d1a1c;border-color:#5a2327;color:#6e2a2e;filter:grayscale(.6)}
+#symptom{min-height:64px;text-align:center;font-style:italic;color:var(--white);max-width:640px;margin:0 auto}
+.controls{text-align:center;margin-top:18px}
+#breathWrap{text-align:center;margin-top:30px}
+#breathCircle{width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,var(--gold),#b3672a);margin:18px auto;transition:transform 4s ease;box-shadow:0 0 40px rgba(244,162,97,.4)}
+#breathCircle.out{transition:transform 8s ease}
+#breathText{font-family:'Arial Black',Arial,sans-serif;color:var(--accent);letter-spacing:2px;min-height:24px}
+ol.drills{margin-left:22px}
+ol.drills li{margin-bottom:12px}
+footer{padding:44px 0 60px;text-align:center;color:var(--grey);font-size:.9rem}
+footer b{color:var(--accent)}
+.togglebar{display:flex;gap:10px;justify-content:flex-end;margin-bottom:14px;flex-wrap:wrap}
+.togglebar button{background:transparent;border:1px solid var(--edge);color:var(--grey);border-radius:8px;padding:7px 14px;cursor:pointer;font-family:Arial,sans-serif;font-size:.8rem}
+.togglebar button.on{border-color:var(--gold);color:var(--gold)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">BOXING<em>BLUPRINT</em></div>
+    <div class="byline">By Landon - Amire</div>
+    <p class="tag"><b>The Miss & Make Them Pay: Elite Boxing Defense.</b> An animated web book. Pay once, unlock the whole thing — and the scroll becomes the story.</p>
+    <svg id="heroFig" width="200" height="170" viewBox="0 0 200 170"></svg>
+    <button class="btn" id="unlockBtn">UNLOCK THE BOOK — ONE-TIME ENTRY</button>
+    <p class="tag" style="font-size:.8rem;margin-top:14px">Free preview below: The Core Principles.</p>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>THE CORE <span>PRINCIPLES</span></h2>
+    <p class="sub">The author's notes, verbatim. Every chapter after this is built on them.</p>
+    <div class="grid">
+      <div class="card gold"><p class="quote">"Breath — going to body"</p><p>Exhale as you drop level and commit to the body shots. Breathing powers the entry. The breath is always the first domino.</p></div>
+      <div class="card gold"><p class="quote">"Vision"</p><p>Eyes stay open and calm. See the punch coming; never turn away from the fight.</p></div>
+      <div class="card gold"><p class="quote">"Timing — back foot"</p><p>Feel the weight settle on the back foot. That loaded back foot IS your counter-timing.</p></div>
+    </div>
+    <div class="card" style="margin-top:18px;text-align:center"><p class="quote">"Make the other person miss while you get into a better spot to score points."</p></div>
+  </div>
+</section>
+
+<div id="gate" class="sec" style="border-bottom:none">
+  <div class="wrap">
+    <h2>THE REST IS <span>INSIDE</span></h2>
+    <p>Chapters 1–6, The Shutdown (the four-lights interactive), the guided Fix breath timer, and the Practice Protocol unlock with one-time entry.</p>
+    <button class="btn" onclick="unlock()">ENTER THE BOOK</button>
+  </div>
+</div>
+
+<div id="locked">
+  <section class="sec" style="border-top:4px solid var(--gold)">
+    <div class="wrap">
+      <div class="togglebar">
+        <button id="coachBtn" class="on" onclick="setMode('coach')">COACH MODE</button>
+        <button id="rookieBtn" onclick="setMode('rookie')">ROOKIE MODE</button>
+      </div>
+      <h2>THE SIX <span>MOVES</span></h2>
+      <p class="sub" id="modeNote">Coach mode: the detailed training manual. Exact actions, exact reasoning.</p>
+      <div id="chapters"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>CH 7 — THE <span>SHUTDOWN</span></h2>
+      <p class="sub">"Falling apart in the ring ain't random. It happens in order. Learn the order, and you catch it at step one instead of step five, when you're already cooked and asking the ref what round it is."</p>
+      <h3 id="whose">YOUR SYSTEMS — PROTECT MODE</h3>
+      <div class="lights">
+        <div class="light" id="L0">BREATH</div>
+        <div class="light" id="L1">LEGS</div>
+        <div class="light" id="L2">TIMING</div>
+        <div class="light" id="L3">VISION</div>
+      </div>
+      <p id="symptom">All four lit. Protect the breath and you protect everything after it.</p>
+      <div class="controls">
+        <button class="btn alt sm" onclick="shutdownStep()">SHUTDOWN ▶</button>
+        <button class="btn alt sm" onclick="backStep()">◀ BACK</button>
+        <button class="btn alt sm" onclick="toggleAttack()" id="modeToggle">SWITCH: RUN IT ON HIM</button>
+      </div>
+      <div id="breathWrap">
+        <h3>THE FIX — SAME ORDER</h3>
+        <div id="breathCircle"></div>
+        <p id="breathText"></p>
+        <p style="color:var(--grey)">Long exhale. Small steps. Rhythm comes back. Soft eyes — see the man, not just the gloves. Between rounds: in for four, out for six or eight.</p>
+        <button class="btn sm" onclick="runFix()">RUN THE FIX</button>
+      </div>
+      <p style="text-align:center;margin-top:26px;color:var(--white);font-style:italic;max-width:640px;margin-left:auto;margin-right:auto">"The skills didn't leave. You lost access to them. They're still in the building. The nervous system changed the locks."</p>
+      <p style="text-align:center;color:var(--red);font-family:'Arial Black',Arial,sans-serif;letter-spacing:1px;margin-top:14px">ONE JOB. NOT FIVE. ONE.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>PRACTICE <span>PROTOCOL</span></h2>
+      <ol class="drills">
+        <li><b>SHADOWBOX THE SIX:</b> run the moves in order — jab-and-angle, inches, slip-inside to body, weave, block/roll, body-head x3 — three rounds, small steps only.</li>
+        <li><b>BREATH DISCIPLINE:</b> between every round, in for four, out for six or eight. Never spend the minute on panic.</li>
+        <li><b>ONE JOB:</b> each round, pick ONE thing — breath, or steps, or rhythm, or soft eyes. Not five. One.</li>
+        <li><b>BODY-HEAD REFLEX:</b> after every slip or weave in practice, the three-punch combination comes out automatically.</li>
+        <li><b>CHECK THE LIGHTS:</b> when something feels off in sparring, check in order — breath, legs, timing, vision — and fix the FIRST dark light, not the symptom.</li>
+        <li><b>RUN IT:</b> in sparring, pick one opponent system per round to switch off — his breath, his legs, his timing, or his vision.</li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>BOXINGBLUPRINT — By Landon - Amire</b></p>
+    <p style="margin-top:8px">Technique chapters adapted from the author's video study notes. The Core Principles and The Shutdown are original material. © 2026</p>
+  </div>
+</footer>
+
+<script>
+/* ============ STICK FIGURE ENGINE ============ */
+function P(b,a,l){var r=a*Math.PI/180;return [b[0]+l*Math.sin(r),b[1]-l*Math.cos(r)];}
+function seg(s,x1,y1,x2,y2,c,w){var e=document.createElementNS('http://www.w3.org/2000/svg','line');e.setAttribute('x1',x1);e.setAttribute('y1',y1);e.setAttribute('x2',x2);e.setAttribute('y2',y2);e.setAttribute('stroke',c);e.setAttribute('stroke-width',w);e.setAttribute('stroke-linecap','round');s.appendChild(e);}
+function head(s,cx,cy,r,c){var e=document.createElementNS('http://www.w3.org/2000/svg','circle');e.setAttribute('cx',cx);e.setAttribute('cy',cy);e.setAttribute('r',r);e.setAttribute('stroke',c);e.setAttribute('stroke-width',2.4);e.setAttribute('fill','none');s.appendChild(e);}
+function fig(s,cx,gy,sc,c,p){
+  var hip=[cx,gy-95*sc], neck=[cx+(p.lean||0)*10*sc, gy-160*sc];
+  seg(s,hip[0],hip[1],neck[0],neck[1],c,2.6);
+  [p.lL,p.lR].forEach(function(a){var k=P(hip,a,48*sc),f=P(k,a*0.4,44*sc);seg(s,hip[0],hip[1],k[0],k[1],c,2.6);seg(s,k[0],k[1],f[0],f[1],c,2.6);});
+  var sh=[neck[0],neck[1]+6*sc];
+  [p.aL,p.aR].forEach(function(a){var e2=P(sh,a,42*sc),h2=P(e2,a*0.35,46*sc);seg(s,sh[0],sh[1],e2[0],e2[1],c,2.6);seg(s,e2[0],e2[1],h2[0],h2[1],c,2.6);});
+  head(s,neck[0],neck[1]+17*sc,15*sc,c);
+}
+var GOLD='#f4a261', GREY='#8b949e';
+var GUARD={aL:25,aR:-25,lL:-14,lR:14}, STEP={lean:1,aL:115,aR:-90,lL:-25,lR:30},
+    JAB={lean:-1,aL:55,aR:-160,lL:-18,lR:12}, SLIP={lean:2,aL:95,aR:-60,lL:-28,lR:24},
+    WEAVE={lean:3,aL:120,aR:-70,lL:-38,lR:44}, COMBO={lean:1,aL:115,aR:-115,lL:-20,lR:26};
+fig(document.getElementById('heroFig'),100,150,1.05,GOLD,{lean:1,aL:105,aR:-95,lL:-18,lR:24});
+
+/* ============ CHAPTERS ============ */
+var CH=[
+ {t:'THE JAB AND ANGLE',cap:'STEP OFF THE LINE',A:STEP,B:JAB,
+  coach:'As the jab comes, step diagonally off the line — right foot first, left slides to match. Fire three: right uppercut, right hand, left hook.',
+  rookie:'When your friend pokes their hand at you (jab), step to the side instead of staying still — then surprise them with three fast punches!',
+  whyCoach:'Moving offline forces a reset. You strike from their blind spot.',
+  whyRookie:'If you move to the side, they can\'t hit you — and you can surprise them!'},
+ {t:'WHY ANGLES MATTER',cap:'THE MIRROR — STEP, VANISH',A:GUARD,B:STEP,
+  coach:'Steps are small, controlled inches. Moving out of the direct line of sight forces peripheral tracking, which is less accurate.',
+  rookie:'Imagine your friend is a mirror. Stand right in front, they see you. Step to the side and you become invisible to their eyes!',
+  whyCoach:'A moving target from an unseen angle cannot be defended.',
+  whyRookie:'You become hard to find, and your punches hit from a place they aren\'t looking.'},
+ {t:'THE BODY ATTACK',cap:'SLIP IN, GO TO BODY',A:SLIP,B:JAB,
+  coach:'Against the right hand, slip INWARD, drop your level, target the body. Step inside during the slip — into the pocket where long punches lose power.',
+  rookie:'When they throw a big punch (right hand), duck down (slip) and aim for their tummy.',
+  whyCoach:'Staying outside invites counters. Inside the pocket, clean body shots land.',
+  whyRookie:'By moving your feet you get to their inside, where the big punches can\'t reach.'},
+ {t:'WEAVING UNDER',cap:'WEAVE THE RAINBOW',A:WEAVE,B:JAB,
+  coach:'Use a low-profile dip to pass under hooks and overhands. Once under the arc, rise into your counter while their arm is still finishing.',
+  rookie:'When they throw a punch like a rainbow (hook), bend your knees to go under it. It\'s like a limbo contest — go under, stay safe, poke back.',
+  whyCoach:'Weaving forces the miss entirely and positions your counter.',
+  whyRookie:'If you go under, you stay safe and can poke back!'},
+ {t:'BLOCKING AND ROLLING',cap:'TIGHT SHIELD — SHOULDER ROLL',A:GUARD,B:JAB,
+  coach:'Keep blocks tight to the head — never reach. Use the shoulder roll to deflect punches across your frame. Final layer of protection.',
+  rookie:'Use your glove like a shield (block) or turn your shoulder to bounce their punch away (shoulder roll).',
+  whyCoach:'Compact guard keeps hands instantly free to fire back.',
+  whyRookie:'These keep your face safe so you can stay in the game longer.'},
+ {t:'THE PRO SECRET — EXTRA PUNCHES',cap:'BODY-HEAD x3 — BUSY BEE',A:COMBO,B:GUARD,
+  coach:'Integrate body-head combos into every defensive move. After every slip or weave, fire three — body, body, head.',
+  rookie:'Now that you know the moves, add extra tummy taps after you duck. Be a busy bee — more punches, totally safe!',
+  whyCoach:'The defensive shell becomes high-volume attack; they can\'t open up without eating a counter.',
+  whyRookie:'Throwing more punches while staying totally safe!'}
+];
+var MODE='coach';
+function setMode(m){MODE=m;
+ document.getElementById('coachBtn').className=(m==='coach')?'on':'';
+ document.getElementById('rookieBtn').className=(m==='rookie')?'on':'';
+ document.getElementById('modeNote').textContent=(m==='coach')?'Coach mode: the detailed training manual. Exact actions, exact reasoning.':'Rookie mode: the fun register — mirrors, rainbows, limbo, busy bees.';
+ renderChapters();}
+function renderChapters(){
+ var host=document.getElementById('chapters'); host.innerHTML='';
+ CH.forEach(function(ch,i){
+  var d=document.createElement('div'); d.className='chapter';
+  d.innerHTML='<h3>CH '+(i+1)+' — '+ch.t+'</h3>';
+  var svgEl=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svgEl.setAttribute('width','280');svgEl.setAttribute('height','180');svgEl.setAttribute('viewBox','0 0 280 180');
+  fig(svgEl,95,165,1.05,GOLD,ch.A); fig(svgEl,195,165,1.05,GREY,ch.B);
+  d.appendChild(svgEl);
+  var p1=document.createElement('p'); p1.innerHTML='<b style="color:#e6edf3">'+(MODE==='coach'?'ACTION:':'WHAT YOU DO:')+'</b> '+(MODE==='coach'?ch.coach:ch.rookie);
+  var p2=document.createElement('p'); p2.className='why'; p2.innerHTML='<b>WHY:</b> '+(MODE==='coach'?ch.whyCoach:ch.whyRookie);
+  var cp=document.createElement('p'); cp.className='cap'; cp.textContent=ch.cap;
+  d.appendChild(p1); d.appendChild(p2); d.appendChild(cp);
+  host.appendChild(d);
+ });
+}
+
+/* ============ UNLOCK (DEMO — replace with Stripe Checkout success callback) ============ */
+function unlock(){
+ try{localStorage.setItem('bb_unlocked','1');}catch(e){}
+ document.getElementById('gate').style.display='none';
+ document.getElementById('locked').style.display='block';
+ renderChapters();
+}
+(function(){var u=null;try{u=localStorage.getItem('bb_unlocked');}catch(e){}
+ if(u){unlock();document.getElementById('unlockBtn').textContent='YOU ARE IN — SCROLL THE BOOK';}})();
+document.getElementById('unlockBtn').addEventListener('click',function(){unlock();this.textContent='YOU ARE IN — SCROLL THE BOOK';document.getElementById('locked').scrollIntoView({behavior:'smooth'});});
+
+/* ============ FOUR LIGHTS ============ */
+var dark=0, attack=false;
+var SYM_P=[
+ 'Breath goes first — fast, shallow, high in the chest. The engine is still there. You just lost the keys.',
+ 'Then the legs — steps heavy, feet flat, reaching because the motor got left behind.',
+ 'Then timing — everything shows up late. A man swinging at problems that already left.',
+ 'Then vision — eyes locked on his gloves. That\'s how you eat shots you swear you never saw.'];
+var SYM_A=[
+ 'Break his breath — body shots. A man breathing through panic is renting his own legs.',
+ 'Break his legs — angles. Miss and reset. Miss and reset. Every reset is a withdrawal.',
+ 'Break his timing — change the rhythm. Feint. Make him commit to something that ain\'t there.',
+ 'Break his vision — jab the eye line. Move left and right. He can\'t time what he can\'t see.'];
+function paintLights(){
+ for(var i=0;i<4;i++){document.getElementById('L'+i).className='light'+(i<dark?' off':'');}
+ var s=document.getElementById('symptom');
+ if(dark===0){s.textContent=attack?'His four lit. Don\'t just hit him — shut him down in order.':'All four lit. Protect the breath and you protect everything after it.';}
+ else{s.textContent=(attack?SYM_A:SYM_P)[dark-1];}
+}
+function shutdownStep(){if(dark<4){dark++;paintLights();}}
+function backStep(){if(dark>0){dark--;paintLights();}}
+function toggleAttack(){attack=!attack;dark=0;paintLights();
+ document.getElementById('whose').textContent=attack?'HIS SYSTEMS — ATTACK MODE':'YOUR SYSTEMS — PROTECT MODE';
+ document.getElementById('modeToggle').textContent=attack?'SWITCH: PROTECT MYSELF':'SWITCH: RUN IT ON HIM';}
+function runFix(){
+ var c=document.getElementById('breathCircle'), t=document.getElementById('breathText');
+ c.style.transform='scale(1)'; t.textContent='GET READY...';
+ [0,1,2,3].forEach(function(i){setTimeout(function(){dark=i;paintLights();},(i+1)*1200);});
+ setTimeout(function(){dark=0;paintLights();},6000);
+ setTimeout(function(){t.textContent='BREATHE IN — 4';c.classList.remove('out');c.style.transform='scale(1.9)';},6000);
+ setTimeout(function(){t.textContent='BREATHE OUT — 8';c.classList.add('out');c.style.transform='scale(1)';},10000);
+ setTimeout(function(){t.textContent='IN — 4';c.classList.remove('out');c.style.transform='scale(1.9)';},18000);
+ setTimeout(function(){t.textContent='OUT — 8';c.classList.add('out');c.style.transform='scale(1)';},22000);
+ setTimeout(function(){t.textContent='ONE JOB. NOT FIVE. ONE.';},30000);
+}
+paintLights();
+</script>
+</body>
+</html>
